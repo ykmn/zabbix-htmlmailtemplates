@@ -1,37 +1,37 @@
 <html lang="en"><head><meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+<!-- problem -->
 <style>
-	
 	.Success {
-    background-color:#86cc89;
-    border:1px solid #57bd5b;
+	background-color:#86cc89;
+	border:1px solid #57bd5b;
 	font-family:Tahoma,Geneva,Arial,sans-serif;font-size:14px;
 	}
 	.Information {
-    background-color:#7499ff;
-    border:1px solid #4673f0;
+	background-color:#7499ff;
+	border:1px solid #4673f0;
 	font-family:Tahoma,Geneva,Arial,sans-serif;font-size:14px;
 	}
 	.Warning {
-    background-color:#FFC859;
-    border:1px solid #E69F10;
+	background-color:#FFC859;
+	border:1px solid #E69F10;
 	font-family:Tahoma,Geneva,Arial,sans-serif;font-size:14px;
 	}
 	.Average {
-    background-color:#FFA059;
-    border:1px solid #e66e15;
+	background-color:#FFA059;
+	border:1px solid #e66e15;
 	font-family:Tahoma,Geneva,Arial,sans-serif;font-size:14px;
 	}
 	.High {
-    background-color:#E97659;
-    border:1px solid #E45959;
+	background-color:#E97659;
+	border:1px solid #E45959;
 	font-family:Tahoma,Geneva,Arial,sans-serif;font-size:14px;
 	}
 	.Disaster {
-    background-color:#E45959;
-    border:1px solid #DE1E09;
+	background-color:#E45959;
+	border:1px solid #DE1E09;
 	font-family:Tahoma,Geneva,Arial,sans-serif;font-size:14px;
 	}
-	
+	h2 { font-family:Tahoma,Geneva,Arial,sans-serif;font-size:20px; }
 </style>
 </head>
 <body>
@@ -39,47 +39,41 @@
 <table style="margin: 10px;border-spacing:0 15px;border-collapse: separate;">
 	<tr>
 		<td class="{TRIGGER.SEVERITY}" style="border-radius:10px;padding: 10px 36px 10px 36px; ">
-			<table style="border:0; text-align:left;" cellpadding="0" cellspacing="0">               
-				<td style="font-weight: bold;font-size:16px">{TRIGGER.SEVERITY}: {TRIGGER.NAME}</td>
-			</table>                    
+			<table style="border:0; text-align:left;" cellpadding="0" cellspacing="0">
+				<td class="{TRIGGER.SEVERITY}" style="font-weight: bold;font-size:16px">[{TRIGGER.SEVERITY}]: {TRIGGER.NAME}</td>
+			</table>
 		</td>
 	</tr>
 	<tr>
 		<td class="{TRIGGER.SEVERITY}" style="border-radius:10px;padding: 10px 36px 10px 36px; ">
-			<table class="{TRIGGER.SEVERITY}" style="border:0; text-align:left;" cellpadding="0" cellspacing="0">               
+			<table class="{TRIGGER.SEVERITY}" style="border:0; text-align:left;" cellpadding="0" cellspacing="0">
 				<td>
-				<b><span>Trigger information</span></b>
-				<p><b>Operational data:</b> <b>{EVENT.OPDATA}</b><br>
-				<p><b>Status:</b> <b><span>{TRIGGER.STATUS}</span></b><br>
-				<b>Severity:</b> {TRIGGER.SEVERITY}<br></p>
+				<b><h2>Trigger information</h2></b>
+				<p><b>Operational data:</b> {EVENT.OPDATA}<br>
+				<p><b>Status: {TRIGGER.STATUS}</b><br>
+				<b>Severity: {TRIGGER.SEVERITY}</b><br></p>
 				<p><b>Description: </b>{TRIGGER.DESCRIPTION}</p>
 				<p><b>Item Description: </b>{ITEM.DESCRIPTION1}</p>
 				<p><b>Item values:</b><br>
 				Name: <i>{ITEM.NAME1}</i><br>
 				Key: <i>{ITEM.KEY1}</i><br>
-				Value: <i>{ITEM.VALUE1}</i><br></p>
-				
+				Value: <i>{ITEM.VALUE1}</i><br>
 				Value 15 minutes ago: <i>{{HOST.HOST}:{ITEM.KEY1}.last(0,15m)}</i><br>
 				Value 30 minutes ago: <i>{{HOST.HOST}:{ITEM.KEY1}.last(0,30m)}</i><br>
 				Value 60 minutes ago: <i>{{HOST.HOST}:{ITEM.KEY1}.last(0,60m)}</i></p>
-				<p><b><a href="https://<Your domain/zabbix/tr_events.php?triggerid={TRIGGER.ID}&eventid={EVENT.ID}">Event Details</a></b><br>
+				<p><b><a href="http://<your_domain>/tr_events.php?triggerid={TRIGGER.ID}&eventid={EVENT.ID}">Event Details</a></b><br>
 				</td>
-			</table>                    
+			</table>
 		</td>
 	</tr>
 	<tr>
 		<td class="Information" style="border-radius:10px;padding: 10px 36px 10px 36px; ">
-			<table class="information" style="border:0; text-align:left;" cellpadding="0" cellspacing="0">               
+			<table class="information" style="border:0; text-align:left;" cellpadding="0" cellspacing="0">
 				<td>
-					<b><span>Host information</span></b>
-					<p><b>Host: </b>{HOST.NAME1} ({HOST.IP1})<br>
+					<b><h2>Host information</h2></b>
+					<p><b>Host: </b><span style="font-size:24px;">{HOST.NAME1} ({HOST.IP1})</span><br>
 					<b>Host description: </b>{HOST.DESCRIPTION}</p>
-					<p><b>Uptime: </b><i>{{HOST.HOST}:system.uptime.last()}</i></p>
-					<p><b>CPU usage:</b><br>
-					Latest value: <i>{{HOST.HOST}:system.cpu.util.last()}</i><br>
-					MAX for 15 minutes: <i>{{HOST.HOST}:system.cpu.util.max(900)}</i><br>
-					MIN for 15 minutes: <i>{{HOST.HOST}:system.cpu.util.min(900)}</i></p>
-					<p><b><a href="https://<Your domain>/zabbix/zabbix.php?action=host.dashboard.view&hostid={HOST.ID}&dashboardid=59">Host Dashboard</a></b><br>
+					<p><b><a href="http://<your_domain>/zabbix.php?action=problem.view&filter_hostids%5B%5D={HOST.ID}&filter_set=1">Host Dashboard</a></b><br>
 				</td>
 			</table>                    
 		</td>
