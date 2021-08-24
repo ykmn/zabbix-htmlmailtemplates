@@ -6,13 +6,14 @@ so the links for event and dashboard points to your environment.
 
 I also changed the subject to this:
 ```Problem: [{TRIGGER.SEVERITY} {HOST.HOST}] {EVENT.NAME}
-OK: [Resolved {HOST.HOST}] in {EVENT.DURATION}: {EVENT.NAME}```
+OK: [Resolved {HOST.HOST}] in {EVENT.DURATION}: {EVENT.NAME}
+```
 
 
 Example new Average Problem:
 
-![Problem](images/Problem.png)
+![Problem](Images/Problem.png)
 
 Example Recovered Average Problem:
 
-![Problem](images/Problem_Recovery.png)
+![Problem](Images/Problem_Recovery.png)
